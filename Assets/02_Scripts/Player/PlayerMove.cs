@@ -11,10 +11,15 @@ public class PlayerMove : MonoBehaviour
     // 3. 이동
 
     // 구현 속성
-    [Header("능력치")]
+    [Header("속도")]
     public float Speed = 3.0f;
     public float MaxSpeed = 10.0f;
-    public float SpeedChange = 1.0f;
+    public float MinSpeed = 1.0f;
+    public float SpeedChangeAmount = 1.0f;
+
+    [Header("가속")]
+    public bool UseBoost = false;
+    public float BoostAcceleration = 1.2f;
 
     [Header("이동범위")]
     public float MinX = -2.85f;
@@ -41,7 +46,13 @@ public class PlayerMove : MonoBehaviour
         // 새로운 위치 = 현재 위치 + 속도 * 시간
         
         Vector2 position = transform.position;
-        Vector2 newPosition = position + direction * Speed * Time.deltaTime;
+
+        float currentSpeed = Speed;
+        if ((Input.GetKey(KeyCode.LeftShift)))
+        {
+            currentSpeed *= BoostAcceleration;
+        }
+        Vector2 newPosition = position + direction * currentSpeed * Time.deltaTime;
         
         // 범위를 넘어가면 min, max 값으로 고정
         if (newPosition.x < MinX)
@@ -71,11 +82,11 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Speed = Mathf.Min(Speed + SpeedChange, MaxSpeed);
+            Speed = Mathf.Min(Speed + SpeedChangeAmount, MaxSpeed);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            Speed = Mathf.Max(Speed - SpeedChange, 0.0f);
+            Speed = Mathf.Max(Speed - SpeedChangeAmount, MinSpeed);
         }
     }
 }
