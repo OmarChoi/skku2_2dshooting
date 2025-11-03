@@ -11,10 +11,12 @@ public class PlayerMove : MonoBehaviour
     // 3. 이동
 
     // 구현 속성
+    [Header("능력치")]
     public float Speed = 3.0f;
     public float MaxSpeed = 10.0f;
     public float SpeedChange = 1.0f;
 
+    [Header("이동범위")]
     public float MinX = -2.5f;
     public float MaxX = 2.5f;
     public float MinY = -4.5f;
