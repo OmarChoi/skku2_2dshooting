@@ -1,0 +1,39 @@
+using UnityEngine;
+
+public class PlayerMove : MonoBehaviour
+{
+    // 목표
+    // "키보드 입력"에 따라 "방향"을 구하고 그 방향으로 이동시키고 싶다.
+
+    // 구현 순서
+    // 1. 키보드 입력
+    // 2. 방향 구하는 방법
+    // 3. 이동
+
+    // 구현 속성
+    public float Speed = 3.0f;
+
+
+    private void Update()
+    {
+        // 1. 키보드 입력을 갑지한다.
+        // 유니티에서는 Input이라고 하는 모듈이 입력에 관한 모든 것을 담당한다.
+        float h = Input.GetAxis("Horizontal");  // 수평 입력에 대한 값을 -1, 0, 1로 가져 온다.
+        float v = Input.GetAxis("Vertical");    // 수직 입력에 대한 값을 -1, 0, 1로 가져 온다.
+
+        // 2. 입력으로부터 방향을 구한다.
+        // 벡터 : 크기와 방향을 표현하는 물리 개념
+        Vector2 direction = new Vector2 (h, v);
+
+        // 그 방향으로 이동을 한다.
+
+        // 새로운 위치 = 현재 위치 + 방향 * 속력 * 시간
+        // 새로운 위치 = 현재 위치 + 속도 * 시간
+        
+        Vector2 position = transform.position;
+        Vector2 newPosition = position + direction * Speed * Time.deltaTime;
+        
+        // Time.deltaTime : 이전 프레임으로부터 현재 프레임까지 시간이 얼마나 흘렀는지 나타내는 값
+        transform.position = newPosition;
+    }
+}
