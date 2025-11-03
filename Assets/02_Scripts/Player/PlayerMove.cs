@@ -17,8 +17,8 @@ public class PlayerMove : MonoBehaviour
     public float SpeedChange = 1.0f;
 
     [Header("이동범위")]
-    public float MinX = -2.5f;
-    public float MaxX = 2.5f;
+    public float MinX = -2.85f;
+    public float MaxX = 2.85f;
     public float MinY = -4.5f;
     public float MaxY = 0.0f;
 
@@ -28,15 +28,15 @@ public class PlayerMove : MonoBehaviour
 
         // 1. 키보드 입력을 갑지한다.
         // 유니티에서는 Input이라고 하는 모듈이 입력에 관한 모든 것을 담당한다.
-        float h = Input.GetAxis("Horizontal");  // 수평 입력에 대한 값을 -1, 0, 1로 가져 온다.
-        float v = Input.GetAxis("Vertical");    // 수직 입력에 대한 값을 -1, 0, 1로 가져 온다.
+        float h = Input.GetAxisRaw("Horizontal");  // 수평 입력에 대한 값을 -1, 0, 1로 가져 온다.
+        float v = Input.GetAxisRaw("Vertical");    // 수직 입력에 대한 값을 -1, 0, 1로 가져 온다.
 
         // 2. 입력으로부터 방향을 구한다.
         // 벡터 : 크기와 방향을 표현하는 물리 개념
         Vector2 direction = new Vector2 (h, v);
+        direction.Normalize();
 
         // 그 방향으로 이동을 한다.
-
         // 새로운 위치 = 현재 위치 + 방향 * 속력 * 시간
         // 새로운 위치 = 현재 위치 + 속도 * 시간
         
