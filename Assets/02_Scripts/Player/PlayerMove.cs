@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
 
     // 구현 속성
     public float Speed = 3.0f;
+    public float MaxSpeed = 10.0f;
+    public float SpeedChange = 1.0f;
 
     public float MinX = -1.85f;
     public float MaxX = 1.85f;
@@ -20,6 +22,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
+        UpdateSpeed();
+
         // 1. 키보드 입력을 갑지한다.
         // 유니티에서는 Input이라고 하는 모듈이 입력에 관한 모든 것을 담당한다.
         float h = Input.GetAxis("Horizontal");  // 수평 입력에 대한 값을 -1, 0, 1로 가져 온다.
@@ -58,5 +62,18 @@ public class PlayerMove : MonoBehaviour
 
         // Time.deltaTime : 이전 프레임으로부터 현재 프레임까지 시간이 얼마나 흘렀는지 나타내는 값
         transform.position = newPosition;
+    }
+
+
+    private void UpdateSpeed()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Speed = Mathf.Min(Speed + SpeedChange, MaxSpeed);
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            Speed = Mathf.Max(Speed - SpeedChange, 0.0f);
+        }
     }
 }
