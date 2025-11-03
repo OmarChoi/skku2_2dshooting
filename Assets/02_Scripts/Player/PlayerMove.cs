@@ -13,6 +13,10 @@ public class PlayerMove : MonoBehaviour
     // 구현 속성
     public float Speed = 3.0f;
 
+    public float MinX = -1.85f;
+    public float MaxX = 1.85f;
+    public float MinY = -4.5f;
+    public float MaxY = 0.0f;
 
     private void Update()
     {
@@ -33,6 +37,25 @@ public class PlayerMove : MonoBehaviour
         Vector2 position = transform.position;
         Vector2 newPosition = position + direction * Speed * Time.deltaTime;
         
+        // 범위를 넘어가면 min, max 값으로 고정
+        if (newPosition.x < MinX)
+        {
+            newPosition.x = MinX;
+        }
+        else if (newPosition.x > MaxX)
+        {
+            newPosition.x = MaxX;
+        }
+
+        if (newPosition.y < MinY)
+        {
+            newPosition.y = MinY;
+        }
+        else if (newPosition.y > MaxY)
+        {
+            newPosition.y = MaxY;
+        }
+
         // Time.deltaTime : 이전 프레임으로부터 현재 프레임까지 시간이 얼마나 흘렀는지 나타내는 값
         transform.position = newPosition;
     }
