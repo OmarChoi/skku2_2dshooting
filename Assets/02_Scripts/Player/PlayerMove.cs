@@ -15,8 +15,8 @@ public class PlayerMove : MonoBehaviour
     public float MaxSpeed = 10.0f;
     public float SpeedChange = 1.0f;
 
-    public float MinX = -1.85f;
-    public float MaxX = 1.85f;
+    public float MinX = -2.5f;
+    public float MaxX = 2.5f;
     public float MinY = -4.5f;
     public float MaxY = 0.0f;
 
@@ -44,11 +44,11 @@ public class PlayerMove : MonoBehaviour
         // 범위를 넘어가면 min, max 값으로 고정
         if (newPosition.x < MinX)
         {
-            newPosition.x = MinX;
+            newPosition.x = MaxX;
         }
         else if (newPosition.x > MaxX)
         {
-            newPosition.x = MaxX;
+            newPosition.x = MinX;
         }
 
         if (newPosition.y < MinY)
