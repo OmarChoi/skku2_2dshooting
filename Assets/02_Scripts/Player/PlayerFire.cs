@@ -4,32 +4,34 @@ public class PlayerFire : MonoBehaviour
 {
     [Header("총알 프리팹")]
     public GameObject BulletPrefab;
+    public GameObject SubBulletPrefab;
 
     [Header("총구")]
-    public Transform[] FirePosition;
+    public Transform[] MainFirePosition;
+    public Transform[] SubFirePosition;
 
-    [Header("쿨타임")]
-    public float CoolTime = 0.6f;   // 몇초마다 발사가 가능한지
-    private float _elapsedTime = 0.0f;
+    [Header("총알 쿨타임")]
+    public float MainBulletCoolTime = 0.6f;   // 몇초마다 발사가 가능한지
+    public float SubBulletCoolTime = 0.4f;    // 서브 총알이 몇초마다 발사가 가능한지
 
     [Header("발사 방식")]
     public bool IsAutoFire = true;
 
+    private float _mainFireTimer = 0.0f;
+    private float _subFireTimer = 0.0f;
+
     private void Update()
     {
-        _elapsedTime += Time.deltaTime;
+        _mainFireTimer += Time.deltaTime;
+        _subFireTimer += Time.deltaTime;
+
         GetFireType();
-        if (CheckCoolTime == true)
-        {
-            if (Input.GetKey(KeyCode.Space) || IsAutoFire)
-            {
-                _elapsedTime = 0.0f;
-                FireBullet();
-            }
-        }
+        ProcessMainBullet();
+        ProcessSubBullet();
     }
 
-    private bool CheckCoolTime => _elapsedTime >= CoolTime;
+    private bool CheckMainCoolTime => _mainFireTimer >= MainBulletCoolTime;
+    private bool CheckSubCoolTime => _subFireTimer >= SubBulletCoolTime;
 
     private void GetFireType()
     {
@@ -43,12 +45,28 @@ public class PlayerFire : MonoBehaviour
         }
     }
 
-    private void FireBullet()
+    private void ProcessMainBullet()
     {
-        for (int i = 0; i < FirePosition.Length; i++)
+        bool isKeyInput = Input.GetKey(KeyCode.Space) || IsAutoFire;
+        if (isKeyInput && CheckMainCoolTime == true)
         {
-            GameObject bullet = Instantiate(BulletPrefab);
-            bullet.transform.position = FirePosition[i].position;
+            _mainFireTimer = 0.0f;
+            for (int i = 0; i < MainFirePosition.Length; i++)
+            {
+                GameObject bullet = Instantiate(BulletPrefab, MainFirePosition[i]);
+            }
+        }
+    }
+
+    private void ProcessSubBullet()
+    {
+        if (CheckSubCoolTime == true)
+        {
+            _subFireTimer = 0.0f;
+            for (int i = 0; i < SubFirePosition.Length; i++)
+            {
+                GameObject bullet = Instantiate(SubBulletPrefab, SubFirePosition[i]);
+            }
         }
     }
 }

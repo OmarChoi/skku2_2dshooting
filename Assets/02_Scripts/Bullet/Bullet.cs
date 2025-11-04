@@ -6,22 +6,31 @@ public class Bullet : MonoBehaviour
     public float StartSpeed = 1.0f;
     public float EndSpeed = 7.0f;
     public float AccelerationTime = 1.2f;
+
+    private Vector2 _startPosition;
     private float _speed = 1.0f;
 
     private void Start()
     {
         _speed = StartSpeed;
+        _startPosition = transform.position;
     }
 
-    private void Update()
+    protected void Update()
     {
         Accelerate();
-        UpdatePosition();
+        Move();
     }
 
-    private void UpdatePosition()
+    protected virtual void Move()
     {
         Vector2 direction = Vector2.up;
+        UpdatePosition(direction);
+    }
+
+    protected void UpdatePosition(Vector2 direction)
+    {
+        direction.Normalize();
         Vector2 position = transform.position;
         Vector2 newPosition = position + direction * _speed * Time.deltaTime;
         transform.position = newPosition;
