@@ -12,17 +12,34 @@ public class PlayerFire : MonoBehaviour
     public float CoolTime = 0.6f;   // 몇초마다 발사가 가능한지
     private float _elapsedTime = 0.0f;
 
+    [Header("발사 방식")]
+    public bool IsAutoFire = true;
+
     private void Update()
     {
         _elapsedTime += Time.deltaTime;
-        if (Input.GetKey(KeyCode.Space))
+        GetFireType();
+        if (CheckCoolTime == true)
         {
-            // 쿨타임 확인
-            if (_elapsedTime > CoolTime)
+            if (Input.GetKey(KeyCode.Space) || IsAutoFire)
             {
                 _elapsedTime = 0.0f;
                 FireBullet();
             }
+        }
+    }
+
+    private bool CheckCoolTime => _elapsedTime >= CoolTime;
+
+    private void GetFireType()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            IsAutoFire = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            IsAutoFire = false;
         }
     }
 
