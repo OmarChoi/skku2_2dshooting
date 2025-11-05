@@ -10,6 +10,9 @@ public class Bullet : MonoBehaviour
     private Vector2 _startPosition;
     private float _speed = 1.0f;
 
+    [SerializeField]
+    private float _damage = 40.0f;
+
     private void Start()
     {
         _speed = StartSpeed;
@@ -42,5 +45,16 @@ public class Bullet : MonoBehaviour
         float acceleration = ((EndSpeed - StartSpeed) / AccelerationTime);
         _speed += acceleration * Time.deltaTime;
         _speed = Mathf.Min(_speed, EndSpeed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy") == false) return;
+
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy == null) return;
+
+        enemy.Health -= _damage;
+        Destroy(this.gameObject);
     }
 }

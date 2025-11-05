@@ -24,9 +24,6 @@ public class PlayerFire : MonoBehaviour
 
     private void Update()
     {
-        _mainFireTimer += Time.deltaTime;
-        _subFireTimer += Time.deltaTime;
-
         GetFireType();
         ProcessMainBullets();
         ProcessSubBullets();
@@ -46,21 +43,25 @@ public class PlayerFire : MonoBehaviour
 
     private void ProcessMainBullets()
     {
+        _mainFireTimer += Time.deltaTime;
         if (_mainFireTimer < MainBulletCoolTime) return;
+
         if (Input.GetKey(KeyCode.Space) || IsAutoFire)
         {
             _mainFireTimer = 0.0f;
-            Instantiate(BulletPrefab, LeftFirePosition);
-            Instantiate(BulletPrefab, RightFirePosition);
+            Instantiate(BulletPrefab, LeftFirePosition.position, LeftFirePosition.rotation);
+            Instantiate(BulletPrefab, RightFirePosition.position, RightFirePosition.rotation);
         }
     }
 
     private void ProcessSubBullets()
     {
+        _subFireTimer += Time.deltaTime;
         if (_subFireTimer < SubBulletCoolTime) return;
+        if (!IsAutoFire) return;
 
         _subFireTimer = 0.0f;
-        Instantiate(SubBulletPrefab, LeftSubFirePosition);
-        Instantiate(SubBulletPrefab, RightSubFirePosition);
+        Instantiate(SubBulletPrefab, LeftSubFirePosition.position, LeftSubFirePosition.rotation);
+        Instantiate(SubBulletPrefab, RightSubFirePosition.position, RightSubFirePosition.rotation);
     }
 }
