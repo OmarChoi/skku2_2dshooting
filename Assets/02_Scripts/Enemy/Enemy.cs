@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
         if (playerState == null) return;
 
         playerState.TakeDamage();
-        this.Die();
+        Die();
     }
 
     private void Die()

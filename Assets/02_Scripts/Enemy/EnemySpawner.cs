@@ -9,7 +9,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("스폰 시간")]
     [SerializeField]
     private float _spawnTime = 0.5f;
-    private float _spawnTimer;
+    private float _spawnTimer = 0.0f;
+
+    [Header("스폰 쿨타임")]
+    private float _minSpawnCoolTime = 1.0f;
+    private float _maxSpawnCoolTime = 3.0f;
 
     private void Update()
     {
@@ -23,9 +27,15 @@ public class EnemySpawner : MonoBehaviour
         return _spawnTimer >= _spawnTime;
     }
 
-    private void SpawnEnemy()
+    private void ResetCoolTime()
     {
         _spawnTimer = 0.0f;
+        _spawnTime = UnityEngine.Random.Range(_minSpawnCoolTime, _maxSpawnCoolTime);
+    }
+
+    private void SpawnEnemy()
+    {
+        ResetCoolTime();
         Instantiate(_enemyPrefab, transform.position, transform.rotation);
     }
 }
