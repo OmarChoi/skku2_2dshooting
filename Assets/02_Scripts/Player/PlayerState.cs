@@ -4,16 +4,18 @@ public class PlayerState : MonoBehaviour
 {
     [Header("체력")]
     private int _life = 3;
-    public int Life
+
+    public void TakeDamage()
     {
-        get { return _life; }
-        set
+        --_life;
+        if (_life == 0)
         {
-            _life = value;
-            if (_life == 0)
-            {
-                Destroy(gameObject);
-            }
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }

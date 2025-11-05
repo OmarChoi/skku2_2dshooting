@@ -2,25 +2,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Info")]
+    [Header("능력치")]
     public float Speed = 3.0f;
-    private float _helth = 100.0f;
-    public float Health
-    {
-        get { return _helth; }
-        set
-        {
-            _helth = value;
-            if (_helth < float.Epsilon)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
-
+    private float _health = 100.0f;
+    
     void Update()
     {
         Move();
+    }
+
+    public void TakeDamage(float damage)
+    {
+        _health -= damage;
+        if(_health < 0)
+        {
+            Die();
+        }
     }
 
     private void Move()
@@ -34,7 +31,13 @@ public class Enemy : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         PlayerState playerState = other.GetComponent<PlayerState>();
         if (playerState == null) return;
-        playerState.Life -= 1;
+
+        playerState.TakeDamage();
+        this.Die();
+    }
+
+    private void Die()
+    {
         Destroy(gameObject);
     }
 }

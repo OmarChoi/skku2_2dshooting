@@ -6,10 +6,10 @@ public class Bullet : MonoBehaviour
     public float StartSpeed = 1.0f;
     public float EndSpeed = 7.0f;
     public float AccelerationTime = 1.2f;
-
     private Vector2 _startPosition;
-    private float _speed = 1.0f;
 
+    [SerializeField]
+    private float _speed = 1.0f;
     [SerializeField]
     private float _damage = 40.0f;
 
@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy == null) return;
 
-        enemy.Health -= _damage;
+        enemy.TakeDamage(_damage);
         Destroy(this.gameObject);
     }
 }
