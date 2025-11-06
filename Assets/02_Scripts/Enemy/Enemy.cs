@@ -14,6 +14,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
@@ -22,10 +27,5 @@ public class Enemy : MonoBehaviour
 
         playerState.TakeDamage();
         Die();
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 }

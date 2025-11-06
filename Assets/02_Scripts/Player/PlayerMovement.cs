@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     // 목표
     // "키보드 입력"에 따라 "방향"을 구하고 그 방향으로 이동시키고 싶다.

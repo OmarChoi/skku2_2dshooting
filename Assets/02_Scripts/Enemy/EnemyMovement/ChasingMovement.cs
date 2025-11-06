@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class ChasingPlayer : EnemyMove
+public class ChasingMovement : EnemyMovement
 {
     private GameObject _target = null;
     private void Start()
     {
         _target = GameObject.FindWithTag("Player");
     }
+
     protected override void SetDirection()
     {
         if (_target == null) return;

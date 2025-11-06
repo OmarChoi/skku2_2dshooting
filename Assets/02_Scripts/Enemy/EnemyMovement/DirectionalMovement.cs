@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DirectionalMove : EnemyMove
+public class DirectionalMovement : EnemyMovement
 {
     protected override void SetDirection()
     {

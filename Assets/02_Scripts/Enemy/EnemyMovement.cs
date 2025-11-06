@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class EnemyMove : MonoBehaviour
+public abstract class EnemyMovement : MonoBehaviour
 {
     private float _speed = 3.0f;
     protected Vector3 _direction = Vector3.down;
