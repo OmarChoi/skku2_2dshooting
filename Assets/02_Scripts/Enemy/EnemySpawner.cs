@@ -36,6 +36,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         ResetCoolTime();
-        Instantiate(_enemyPrefab, transform.position, transform.rotation);
+        GameObject enemyObject = Instantiate(_enemyPrefab, transform.position, transform.rotation);
+        enemyObject.AddComponent<ChasingPlayer>();
     }
 }

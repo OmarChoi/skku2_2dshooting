@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     [Header("체력")]
     private int _life = 3;

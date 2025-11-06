@@ -1,0 +1,18 @@
+using UnityEngine;
+
+public class ChasingPlayer : EnemyMove
+{
+    private GameObject _target = null;
+    private void Start()
+    {
+        _target = GameObject.FindWithTag("Player");
+    }
+    protected override void SetDirection()
+    {
+        if (_target == null) return;
+        Vector3 myPosition = transform.position;
+        Vector3 targetPosition = _target.transform.position;
+        _direction = targetPosition - myPosition;
+        _direction.Normalize();
+    }
+}
