@@ -1,13 +1,16 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public enum EMovementType
 {
     DirectionalMovement,
     ChasingMovement,
+    RushMovement,
 }
 
 public class EnemySpawner : MonoBehaviour
 {
+    GameObject _player = null;
     [Header("적 프리팹")]
     [SerializeField]
     private GameObject[] _enemyPrefab;
@@ -23,7 +26,13 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("스폰 확률")]
     private int _totalWeight = 0;
-    private int[] _probabilityWeights = new int[] { 70, 30 };
+    private int[] _probabilityWeights = new int[] { 60, 30, 30 };
+
+    [Header("스폰시 위치 오프셋")]
+    float _minSpawnX = -2.25f;
+    float _maxSpawnX = 2.25f;
+    float _minYDistance = 3.0f;
+    float _maxSpawnY = 5.0f;
 
     private void Start()
     {
@@ -31,6 +40,7 @@ public class EnemySpawner : MonoBehaviour
         {
             _totalWeight += weight;
         }
+        _player = GameObject.FindWithTag("Player");
     }
 
     private void Update()
@@ -62,6 +72,15 @@ public class EnemySpawner : MonoBehaviour
         else if (type == EMovementType.ChasingMovement)
         {
             Instantiate(_enemyPrefab[(int)EMovementType.ChasingMovement], transform.position, transform.rotation);
+        }
+        else if (type == EMovementType.RushMovement)
+        {
+            if (_player == null) return;
+            GameObject enemy = Instantiate(_enemyPrefab[(int)EMovementType.RushMovement]);
+            Vector2 spawnPosition = _player.transform.position;
+            spawnPosition.x = UnityEngine.Random.Range(_minSpawnX, _maxSpawnX);
+            spawnPosition.y = UnityEngine.Random.Range(spawnPosition.y + _minYDistance, _maxSpawnY);
+            enemy.transform.position = spawnPosition;
         }
     }
 

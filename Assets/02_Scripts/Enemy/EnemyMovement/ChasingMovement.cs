@@ -8,7 +8,13 @@ public class ChasingMovement : EnemyMovement
         _target = GameObject.FindWithTag("Player");
     }
 
-    protected override void SetDirection()
+    protected override void Move()
+    {
+        SetDirection();
+        transform.position += _direction * (_speed * Time.deltaTime);
+    }
+
+    private void SetDirection()
     {
         if (_target == null) return;
         Vector3 myPosition = transform.position;

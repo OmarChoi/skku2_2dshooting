@@ -47,4 +47,5 @@ MonoBehaviour:
   _enemyPrefab:
   - {fileID: 7299468638613245390, guid: 69c72ebd66eadc646805b232f83cd0f0, type: 3}
   - {fileID: 7565436770753488498, guid: 87209b38ed5036c42ac386bbd748a537, type: 3}
+  - {fileID: 3797397295862767673, guid: 36a685f30068de14993f86de15dce902, type: 3}
   _spawnTime: 0.7
