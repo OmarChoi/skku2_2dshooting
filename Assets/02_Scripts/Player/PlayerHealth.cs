@@ -4,6 +4,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header("체력")]
     private int _life = 3;
+    private int _maxLife = 3;
 
     public void TakeDamage()
     {
@@ -12,6 +13,11 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void Heal()
+    {
+        _life = Mathf.Min(_life + 1, _maxLife);
     }
 
     private void Die()

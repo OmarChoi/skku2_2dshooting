@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpeedUpItem : ItemType
+public class MoveSpeedUpItem : ItemType
 {
     private int _increaseAmount = 1;
 
