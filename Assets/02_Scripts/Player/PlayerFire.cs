@@ -13,8 +13,10 @@ public class PlayerFire : MonoBehaviour
     public Transform RightSubFirePosition;
 
     [Header("총알 쿨타임")]
-    public float MainBulletCoolTime = 0.6f;   // 몇초마다 발사가 가능한지
-    public float SubBulletCoolTime = 0.4f;    // 서브 총알이 몇초마다 발사가 가능한지
+    private float _mainBulletCoolTime = 0.6f;   // 몇초마다 발사가 가능한지
+    private float _subBulletCoolTime = 0.4f;    // 서브 총알이 몇초마다 발사가 가능한지
+    private float _attackSpeed = 1.0f;
+    private float _maxAttackSpeed = 2.5f;
 
     [Header("발사 방식")]
     public bool IsAutoFire = false;
@@ -44,7 +46,8 @@ public class PlayerFire : MonoBehaviour
     private void ProcessMainBullets()
     {
         _mainFireTimer += Time.deltaTime;
-        if (_mainFireTimer < MainBulletCoolTime) return;
+        float fireTimer = _mainFireTimer * _attackSpeed;
+        if (fireTimer < _mainBulletCoolTime) return;
 
         if (Input.GetKey(KeyCode.Space) || IsAutoFire)
         {
@@ -57,11 +60,18 @@ public class PlayerFire : MonoBehaviour
     private void ProcessSubBullets()
     {
         _subFireTimer += Time.deltaTime;
-        if (_subFireTimer < SubBulletCoolTime) return;
+        float fireTimer = _subFireTimer * _attackSpeed;
+        if (fireTimer < _subBulletCoolTime) return;
         if (!IsAutoFire) return;
 
         _subFireTimer = 0.0f;
         Instantiate(SubBulletPrefab, LeftSubFirePosition.position, LeftSubFirePosition.rotation);
         Instantiate(SubBulletPrefab, RightSubFirePosition.position, RightSubFirePosition.rotation);
+    }
+
+    public void IncreaseAttackSpeedRatio(float ratio)
+    {
+        _attackSpeed *= ratio;
+        _attackSpeed = Mathf.Min(_attackSpeed, _maxAttackSpeed);
     }
 }
