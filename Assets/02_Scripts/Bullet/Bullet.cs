@@ -49,7 +49,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy") == false) return;
 
-        Enemy enemy = other.GetComponent<Enemy>();
+        EnemyHealth enemy = other.GetComponent<EnemyHealth>();
         if (enemy == null) return;
 
         enemy.TakeDamage(_damage);

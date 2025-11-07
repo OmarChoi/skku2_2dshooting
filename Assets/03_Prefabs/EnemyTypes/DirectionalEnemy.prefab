@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7833418771773294524}
   - component: {fileID: 2792860382519101779}
-  - component: {fileID: 4359626774444879928}
   - component: {fileID: 5420447160222931292}
   - component: {fileID: 896020258401201256}
+  - component: {fileID: 4359626774444879928}
+  - component: {fileID: 6556770429253858259}
   - component: {fileID: 4540740462854118524}
   m_Layer: 0
   m_Name: DirectionalEnemy
@@ -91,18 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4359626774444879928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7299468638613245390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07e26b0e27f13f742a882db210ff8353, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &5420447160222931292
 Rigidbody2D:
   serializedVersion: 5
@@ -166,6 +155,30 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &4359626774444879928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7299468638613245390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e26b0e27f13f742a882db210ff8353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6556770429253858259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7299468638613245390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e05cca4b8af7e1468982c44f42aa058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4540740462854118524
 MonoBehaviour:
   m_ObjectHideFlags: 0
