@@ -16,6 +16,12 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
+        GameObject itemSpawner = GameObject.FindWithTag("ItemSpawner");
+        if (itemSpawner != null)
+        {
+            ItemSpawner spawner = itemSpawner.GetComponent<ItemSpawner>();
+            spawner.SpawnItem(transform.position);
+        }
         Destroy(gameObject);
     }
 }
