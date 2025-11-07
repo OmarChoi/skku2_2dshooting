@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public enum EMovementType
 {
@@ -64,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         ResetCoolTime();
-        EMovementType type = GetMovementType();
+        EMovementType type = (EMovementType)Utils.GetRandomIndexByWeight(_totalWeight, _probabilityWeights);
         if (type == EMovementType.DirectionalMovement)
         {
             Instantiate(_enemyPrefab[(int)EMovementType.DirectionalMovement], transform.position, transform.rotation);
@@ -82,22 +81,5 @@ public class EnemySpawner : MonoBehaviour
             spawnPosition.y = UnityEngine.Random.Range(spawnPosition.y + _minYDistance, _maxSpawnY);
             enemy.transform.position = spawnPosition;
         }
-    }
-
-    private EMovementType GetMovementType()
-    {
-        float randomValue = UnityEngine.Random.value;
-        float totalValue = 0.0f;
-        int type = 0;
-        for (int i = 0; i < _probabilityWeights.Length; ++i)
-        {
-            totalValue += (float)_probabilityWeights[i] / _totalWeight;
-            if (randomValue < totalValue)
-            {
-                type = i;
-                break;
-            }
-        }
-        return (EMovementType)type;
     }
 }

@@ -1061,7 +1061,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981473408}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1069,7 +1069,7 @@ Transform:
   - {fileID: 7571144767331752754}
   - {fileID: 1610752690}
   - {fileID: 1849047996}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2136674832}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1995155169
 PrefabInstance:
@@ -1141,6 +1141,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5961665250442076147, guid: 8b41392fd55a42b4aa43a06d4693f504, type: 3}
   m_PrefabInstance: {fileID: 1995155169}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2136674831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2136674832}
+  m_Layer: 0
+  m_Name: Spawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2136674832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136674831}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1981473409}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7571144767331752753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1277,4 +1309,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 178388488}
   - {fileID: 1046720610}
-  - {fileID: 1981473409}
+  - {fileID: 2136674832}
