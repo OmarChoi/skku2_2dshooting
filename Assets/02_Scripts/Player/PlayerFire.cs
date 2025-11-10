@@ -19,7 +19,7 @@ public class PlayerFire : MonoBehaviour
     private float _maxAttackSpeed = 2.5f;
 
     [Header("발사 방식")]
-    public bool IsAutoFire = false;
+    private bool _isAutoFire = false;
 
     private float _mainFireTimer = 0.0f;
     private float _subFireTimer = 0.0f;
@@ -35,11 +35,11 @@ public class PlayerFire : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            IsAutoFire = true;
+            _isAutoFire = true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            IsAutoFire = false;
+            _isAutoFire = false;
         }
     }
 
@@ -49,7 +49,7 @@ public class PlayerFire : MonoBehaviour
         float fireTimer = _mainFireTimer * _attackSpeed;
         if (fireTimer < _mainBulletCoolTime) return;
 
-        if (Input.GetKey(KeyCode.Space) || IsAutoFire)
+        if (Input.GetKey(KeyCode.Space) || _isAutoFire)
         {
             _mainFireTimer = 0.0f;
             Instantiate(BulletPrefab, LeftFirePosition.position, LeftFirePosition.rotation);
@@ -62,11 +62,12 @@ public class PlayerFire : MonoBehaviour
         _subFireTimer += Time.deltaTime;
         float fireTimer = _subFireTimer * _attackSpeed;
         if (fireTimer < _subBulletCoolTime) return;
-        if (!IsAutoFire) return;
-
-        _subFireTimer = 0.0f;
-        Instantiate(SubBulletPrefab, LeftSubFirePosition.position, LeftSubFirePosition.rotation);
-        Instantiate(SubBulletPrefab, RightSubFirePosition.position, RightSubFirePosition.rotation);
+        if (Input.GetKey(KeyCode.Space) || _isAutoFire)
+        {
+            _subFireTimer = 0.0f;
+            Instantiate(SubBulletPrefab, LeftSubFirePosition.position, LeftSubFirePosition.rotation);
+            Instantiate(SubBulletPrefab, RightSubFirePosition.position, RightSubFirePosition.rotation);
+        }
     }
 
     public void IncreaseAttackSpeedRatio(float ratio)
