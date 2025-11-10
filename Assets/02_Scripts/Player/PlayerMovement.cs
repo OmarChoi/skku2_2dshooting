@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum EPlayerState
 {
@@ -36,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
     private EPlayerState _playerState = EPlayerState.Idle;
     private Dictionary<EPlayerState, Action> _stateActions;
 
+    [Header("애니메이션")]
+    private Animator _animator;
+
     private void Start()
     {
         _originPosition = transform.position;
@@ -44,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
             { EPlayerState.Idle, FindTarget },
             { EPlayerState.Move,  MoveToTarget },
         };
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -86,6 +91,11 @@ public class PlayerMovement : MonoBehaviour
         direction = new Vector2(h, v);
         direction.Normalize();
 
+        _animator.SetInteger("x", (int)direction.x);
+        // if (direction.x < 0) _animator.Play("Left");
+        // else if (direction.x < 0) _animator.Play("Right");
+        // else _animator.Play("Idle");
+
         Vector2 newPosition = position + direction * speed * Time.deltaTime;
 
         float width = MaxX - MinX;
@@ -126,6 +136,8 @@ public class PlayerMovement : MonoBehaviour
         float yDirection = -Mathf.Sign(toTarget.y); // 적이 아래에 있으면 위쪽으로 회피하게 설정
         float xSpeed = yDistance * _speed;          // y좌표가 가까우면 피격 당하지 않기 위해 천천히 이동
         Vector2 moveDirection = new Vector2(Mathf.Sign(xDirection) * xSpeed, yDirection).normalized;
+
+        _animator.SetInteger("x", (int)moveDirection.x);
         Vector2 newPosition = myPosition + moveDirection * _speed * Time.deltaTime;
         CheckPositionInRange(ref newPosition);
         transform.position = newPosition;
@@ -181,5 +193,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 direction = _originPosition - (Vector2)transform.position;
         transform.Translate(direction * _speed * Time.deltaTime);
+
+        _animator.SetInteger("x", (int)direction.x);
+
     }
 }
