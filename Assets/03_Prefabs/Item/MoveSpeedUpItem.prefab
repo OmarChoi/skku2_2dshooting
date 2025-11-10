@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 897768555227776994}
   - component: {fileID: 2432049530892729489}
   - component: {fileID: 5164162846447226284}
+  - component: {fileID: 6709151446505060999}
   m_Layer: 0
   m_Name: MoveSpeedUpItem
   m_TagString: Untagged
@@ -163,5 +164,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 427efdd5074eb5340bfc7cf985fe4c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6709151446505060999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5802823930579556317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9522d26682ce248956080f85bbaaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
