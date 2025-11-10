@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: 5547e92425a5b584ba72bba3566474f0
+guid: 6b4b6af2adc5dee4ba275da784836bc5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 874343242196921964
-    second: Player Bullet 1
+      213: -2953135446260251059
+    second: Heart Pickup_0
   - first:
-      213: -7976837497307082302
-    second: Player Bullet 1
+      213: 2024148565477876207
+    second: Heart Pickup_1
   - first:
-      213: -7803065417098437583
-    second: Follower Bullet
+      213: 2677280906060002211
+    second: Heart Pickup_2
   - first:
-      213: 7431529995326980795
-    second: Enemy Bullet 0
+      213: 5235472231290632739
+    second: Heart Pickup_3
   - first:
-      213: -7779215486825634471
-    second: Enemy Bullet 1
+      213: 6439474463679887495
+    second: Heart Pickup_4
   - first:
-      213: 830317617348258784
-    second: Enemy Bullet 2
-  - first:
-      213: 6112890488319390909
-    second: Enemy Bullet 3
+      213: -5239801036830654560
+    second: Heart Pickup_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -69,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 10
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,13 +81,13 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -103,10 +100,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,49 +113,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 512
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Server
-    maxTextureSize: 512
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 512
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -170,155 +128,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bullets_0
+      name: Heart Pickup_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d460b0045fa5407d0800000000000000
+      internalID: -2953135446260251059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart Pickup_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe1ece95568371c10800000000000000
+      internalID: 2024148565477876207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart Pickup_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a374a99ccc972520800000000000000
+      internalID: 2677280906060002211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart Pickup_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 10
-        height: 12
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4a8b695e77026284cbbb18c39f8f519b
-      internalID: -950882106
+      spriteID: 32aff71714228a840800000000000000
+      internalID: 5235472231290632739
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullets_1
+      name: Heart Pickup_4
       rect:
         serializedVersion: 2
-        x: 11
+        x: 16
         y: 0
-        width: 10
-        height: 12
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 8ad754e3a2338124592dccccb31feb9a
-      internalID: 1045858136
+      spriteID: 788b6db28eb9d5950800000000000000
+      internalID: 6439474463679887495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullets_2
+      name: Heart Pickup_5
       rect:
         serializedVersion: 2
-        x: 22
+        x: 32
         y: 0
-        width: 10
-        height: 12
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c21ca66027f1c7241bfd40b20ac01185
-      internalID: -1271289925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bullets_3
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 0
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f960125829722b4a92bbcaba6474299
-      internalID: -159617159
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bullets_4
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 0
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ebc1cae612e1c84ba4d26fd97957d67
-      internalID: 1994522905
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bullets_5
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 0
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20f5ccc183441024f95a9de12f454807
-      internalID: -1508545389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bullets_6
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 0
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 61a5d14fb2d564a44881e8aff1cb3310
-      internalID: -1960708178
+      spriteID: 0af3cf9f7bc7847b0800000000000000
+      internalID: -5239801036830654560
       vertices: []
       indices: 
       edges: []
@@ -327,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: d499316072906c24191d11ca4a4f1751
     internalID: 0
     vertices: []
     indices: 
@@ -337,13 +273,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bullets_0: -950882106
-      Bullets_1: 1045858136
-      Bullets_2: -1271289925
-      Bullets_3: -159617159
-      Bullets_4: 1994522905
-      Bullets_5: -1508545389
-      Bullets_6: -1960708178
+      Heart Pickup_0: -2953135446260251059
+      Heart Pickup_1: 2024148565477876207
+      Heart Pickup_2: 2677280906060002211
+      Heart Pickup_3: 5235472231290632739
+      Heart Pickup_4: 6439474463679887495
+      Heart Pickup_5: -5239801036830654560
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
