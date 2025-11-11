@@ -6,6 +6,9 @@ public class EnemyHealth : MonoBehaviour
     private float _health = 100.0f;
 
     private Animator _animator = null;
+
+    [Header("이펙트 프리팹")]
+    public GameObject ExplosionPrefab;
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -29,6 +32,13 @@ public class EnemyHealth : MonoBehaviour
             ItemSpawner spawner = itemSpawner.GetComponent<ItemSpawner>();
             spawner.SpawnItem(transform.position);
         }
+
+        MakeExplosionEffect();
         Destroy(gameObject);
+    }
+
+    private void MakeExplosionEffect()
+    {
+        Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
     }
 }

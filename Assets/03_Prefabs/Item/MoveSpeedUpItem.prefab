@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1167273050, guid: 606e3127513c6c74d852755e18a67337, type: 3}
+  m_Sprite: {fileID: 1484923720, guid: 606e3127513c6c74d852755e18a67337, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427efdd5074eb5340bfc7cf985fe4c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EffectPrefab: {fileID: 2360655870356088562, guid: 57a776ff377f3c44e8403e2067a4d41f, type: 3}
 --- !u!114 &6709151446505060999
 MonoBehaviour:
   m_ObjectHideFlags: 0

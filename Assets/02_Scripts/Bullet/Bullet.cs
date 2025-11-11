@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
 
     private void Accelerate()
     {
-        // AccelationTime 시간 안에 최대 속도에 도달하게 구현
+        // AccelationTime 시간 안에 최대 속도에 도달합니다.
         float acceleration = ((EndSpeed - StartSpeed) / AccelerationTime);
         _speed += acceleration * Time.deltaTime;
         _speed = Mathf.Min(_speed, EndSpeed);
