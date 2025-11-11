@@ -11,7 +11,7 @@ public class Bomb : MonoBehaviour
     [Header("시간")]
     private float _elapsedTime = 0.0f;
     private float _duration = 3.0f;
-    // 최대 크기 도달 시간.
+    // 최대 크기까지 도달하는 시간입니다.
     private float _maxSizeReachedTime = 2.0f;  
 
     [Header("박동")]
