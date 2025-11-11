@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerSkillExcuter : MonoBehaviour
+public class PlayerSkillExecuter : MonoBehaviour
 {
     [Header("스킬 프리팹")]
     public GameObject BombSkillPrefab;
