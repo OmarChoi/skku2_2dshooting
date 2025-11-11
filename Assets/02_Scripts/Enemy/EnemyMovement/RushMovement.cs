@@ -24,7 +24,11 @@ public class RushMovement : EnemyMovement
         Vector3 targetPosition = target.transform.position;
         _direction = targetPosition - myPosition;
         _direction.Normalize();
-        transform.up = _direction;
+
+        float defaultAngle = Mathf.Atan2(Vector2.down.y, Vector2.down.x);
+        float targetAngle = Mathf.Atan2(_direction.y, _direction.x);
+        float finalAngle = (targetAngle - defaultAngle) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, finalAngle);
     }
 
     protected override void Move()

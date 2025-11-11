@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _isAutoMove = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _isAutoMove = false;
         }
