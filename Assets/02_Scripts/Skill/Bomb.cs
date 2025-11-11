@@ -13,6 +13,10 @@ public class Bomb : MonoBehaviour
     private float _duration = 3.0f;
     private float _maxSizeReachedTime = 2.0f;  // 최대 크기 도달 시간
 
+    [Header("박동")]
+    private float _pulseSize = 0.1f;
+    private float _pulseFrequency = 5.0f;
+
     private void Update()
     {
         _elapsedTime += Time.deltaTime;
@@ -30,7 +34,8 @@ public class Bomb : MonoBehaviour
     {
         float maxTime = Mathf.Min(_duration, _maxSizeReachedTime);
         float scaleSize = Mathf.Lerp(_startSize, _maxSize, _elapsedTime / maxTime);
-        transform.localScale = Vector3.one * scaleSize;
+        float pulse = Mathf.Sin(_elapsedTime * _pulseFrequency) * _pulseSize * scaleSize;
+        transform.localScale = Vector3.one * (scaleSize + pulse);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
