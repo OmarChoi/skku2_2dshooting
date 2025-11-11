@@ -8,6 +8,11 @@ public class BackgroundScroll : MonoBehaviour
     private void Update()
     {
         Vector2 direction = Vector2.up;
-        BackgroundMaterial.mainTextureOffset += direction * ScrollSpeed * Time.deltaTime;
+        Vector2 offset = BackgroundMaterial.mainTextureOffset;
+
+        offset += direction * ScrollSpeed * Time.deltaTime;
+        offset.y = Mathf.Repeat(offset.y, 1.0f);
+
+        BackgroundMaterial.mainTextureOffset = offset;
     }
 }
