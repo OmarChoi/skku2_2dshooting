@@ -3,15 +3,11 @@ using UnityEngine;
 public class AttackSpeedUpItem : ItemType
 {
     private float _increaseMultiply = 1.2f;
-    public GameObject AttackSpeedUpEffectPrefab;
 
-    protected override void ApplyEffect(ref Collider2D other)
+    protected override void ApplyEffect(Collider2D other)
     {
         if (other.CompareTag("Player") == false) return;
-        if (AttackSpeedUpEffectPrefab != null)
-        {
-            Instantiate(AttackSpeedUpEffectPrefab, other.transform);
-        }
+        SpawnEffect(other.transform);
         PlayerFire playerFire = other.GetComponent<PlayerFire>();
         playerFire.IncreaseAttackSpeedRatio(_increaseMultiply);
         Destroy(gameObject);

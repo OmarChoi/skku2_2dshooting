@@ -9,10 +9,17 @@ public enum EItemType
 
 public abstract class ItemType : MonoBehaviour
 {
-    protected abstract void ApplyEffect(ref Collider2D other);
+    public GameObject EffectPrefab = null;
+    protected abstract void ApplyEffect(Collider2D other);
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        ApplyEffect(ref other);
+        ApplyEffect(other);
+    }
+
+    protected void SpawnEffect(Transform transform)
+    {
+        if (EffectPrefab == null) return;
+        Instantiate(EffectPrefab, transform);
     }
 }
