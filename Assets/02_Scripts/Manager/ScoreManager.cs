@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
@@ -9,22 +10,37 @@ public class ScoreManager : MonoBehaviour
     private int _currentScore = 0;
     private int _highScore = 0;
     private const string HighScoreKey = "HighScore";
-
+    
+    private Tweener _shakeTween;
+    private float _shakeDuration = 0.1f;
+    private float _shakeSize = 1.25f;
     private void Start()
     {
         LoadHighScore();
         Refresh();
+
+
+        _shakeTween = _currentScoreTextUI.transform
+            .DOShakeScale(_shakeDuration, _shakeSize)
+            .SetAutoKill(false)
+            .Pause();
     }
 
     public void AddScore(int score)
     {
         if (score <= 0) return;
         _currentScore += score;
+        ShakeScoreUI();
         Refresh();
 
         if (_currentScore < _highScore) return;
         _highScore = _currentScore;
         RefreshHighScoreText();
+    }
+
+    private void ShakeScoreUI()
+    {
+        _shakeTween.Restart();
     }
 
     private void Refresh()
