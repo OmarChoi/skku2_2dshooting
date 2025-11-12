@@ -33,6 +33,9 @@ public class EnemyHealth : MonoBehaviour
             spawner.SpawnItem(transform.position);
         }
 
+        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
+        // todo : 추후 매직넘버 수정 예정 입니다.
+        scoreManager.AddScore(100);
         MakeExplosionEffect();
         Destroy(gameObject);
     }
