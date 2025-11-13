@@ -25,9 +25,15 @@ public class ItemMovement : MonoBehaviour
 
     private void UpdatePosition()
     {
+        Vector3 direction = Vector3.down;
+        if (_target == null)
+        {
+            transform.position += direction * (_speed * Time.deltaTime);
+            return;
+        }
         Vector3 myPosition = transform.position;
         Vector3 targetPosition = _target.transform.position;
-        Vector3 direction = targetPosition - myPosition;
+        direction = targetPosition - myPosition;
         direction.Normalize();
         transform.position += direction * (_speed * Time.deltaTime);
     }
