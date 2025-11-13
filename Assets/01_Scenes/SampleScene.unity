@@ -280,8 +280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0f9c02625065e43a355c98179406ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 2178108023562888387, guid: b6822495dde3b4743925cfbf8d3c8f6a, type: 3}
-  SubBulletPrefab: {fileID: 1562646851228537816, guid: c82678cdce0b355409921380e0574bbd, type: 3}
   LeftFirePosition: {fileID: 1042979990}
   RightFirePosition: {fileID: 1967830344}
   LeftSubFirePosition: {fileID: 1318192549}
