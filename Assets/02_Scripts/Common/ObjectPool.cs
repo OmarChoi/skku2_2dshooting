@@ -41,13 +41,11 @@ public class ObjectPool
         }
 
         GameObject pooledObject = _pool.Dequeue();
-        pooledObject.SetActive(true);
         return pooledObject;
     }
 
     public void ReleaseObject(GameObject releaseObject)
     {
-        releaseObject.SetActive(false);
         _pool.Enqueue(releaseObject);
     }
 }
