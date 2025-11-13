@@ -13,16 +13,20 @@ public class PlayerFire : MonoBehaviour
     public Transform RightSubFirePosition;
 
     [Header("총알 쿨타임")]
-    private float _mainBulletCoolTime = 0.6f;   // 몇초마다 발사가 가능한지
-    private float _subBulletCoolTime = 0.4f;    // 서브 총알이 몇초마다 발사가 가능한지
+    // 몇초마다 발사가 가능한지 의미합니다.
+    private float _mainBulletCoolTime = 0.6f;
+    // 서브 총알이 몇초마다 발사가 가능한지 의미합니다.
+    private float _subBulletCoolTime = 0.4f;
     private float _attackSpeed = 1.0f;
     private float _maxAttackSpeed = 2.5f;
+    private float _mainFireTimer = 0.0f;
+    private float _subFireTimer = 0.0f;
 
     [Header("발사 방식")]
     private bool _isAutoFire = false;
 
-    private float _mainFireTimer = 0.0f;
-    private float _subFireTimer = 0.0f;
+    [Header("사운드")]
+    public AudioSource FireSound;
 
     private void Update()
     {
@@ -51,6 +55,8 @@ public class PlayerFire : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) || _isAutoFire)
         {
+            FireSound.Play();
+
             _mainFireTimer = 0.0f;
             Instantiate(BulletPrefab, LeftFirePosition.position, LeftFirePosition.rotation);
             Instantiate(BulletPrefab, RightFirePosition.position, RightFirePosition.rotation);
