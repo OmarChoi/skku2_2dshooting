@@ -372,6 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7183cc799585c746b0bd08158e78043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameOverPrefab: {fileID: 7161118064567688322, guid: 4b213982eddda2e48aab973beb6df5c1, type: 3}
 --- !u!95 &178388493
 Animator:
   serializedVersion: 7

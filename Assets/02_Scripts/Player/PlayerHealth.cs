@@ -6,6 +6,8 @@ public class PlayerHealth : MonoBehaviour
     private int _life = 3;
     private int _maxLife = 3;
 
+    [SerializeField] private GameObject _gameOverPrefab;
+
     public void TakeDamage()
     {
         --_life;
@@ -22,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
+        Instantiate(_gameOverPrefab);
         Destroy(gameObject);
     }
 }
