@@ -9,6 +9,9 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private Text _highScoreTextUI;
     private int _currentScore = 0;
     private int _highScore = 0;
+
+    private ScoreData _scoreData = null;
+
     private const string HighScoreKey = "HighScore";
     
     private Tweener _shakeTween;
@@ -18,7 +21,6 @@ public class ScoreManager : MonoBehaviour
     {
         LoadHighScore();
         Refresh();
-
 
         _shakeTween = _currentScoreTextUI.transform
             .DOShakeScale(_shakeDuration, _shakeSize)
@@ -55,12 +57,21 @@ public class ScoreManager : MonoBehaviour
 
     public void SaveScore()
     {
-        PlayerPrefs.SetInt(HighScoreKey, _highScore);
+        _scoreData.HighScore = _highScore;
+        string jsonData = JsonUtility.ToJson(_scoreData);
+        PlayerPrefs.SetString(HighScoreKey, jsonData);
     }
 
     private void LoadHighScore()
     {
-        _highScore = PlayerPrefs.GetInt(HighScoreKey, 0);
+        string jsonData = PlayerPrefs.GetString(HighScoreKey);
+        _scoreData = JsonUtility.FromJson<ScoreData>(jsonData);
+        if (_scoreData == null)
+        {
+            _scoreData = new ScoreData();
+            return;
+        }
+        _highScore = _scoreData.HighScore;
         RefreshHighScoreText();
     }
 
