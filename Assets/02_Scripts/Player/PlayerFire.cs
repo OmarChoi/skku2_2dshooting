@@ -54,8 +54,8 @@ public class PlayerFire : MonoBehaviour
             FireSound.Play();
 
             _mainFireTimer = 0.0f;
-            BulletFactory.Instance.MakeBullet(LeftFirePosition.position);
-            BulletFactory.Instance.MakeBullet(RightFirePosition.position);
+            BulletFactory.Instance.MakeBullet(EBulletType.Main, LeftFirePosition.position);
+            BulletFactory.Instance.MakeBullet(EBulletType.Main, RightFirePosition.position);
         }
     }
 
@@ -67,8 +67,8 @@ public class PlayerFire : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) || _isAutoFire)
         {
             _subFireTimer = 0.0f;
-            BulletFactory.Instance.MakeSubBullet(LeftSubFirePosition.position);
-            BulletFactory.Instance.MakeSubBullet(RightSubFirePosition.position);
+            BulletFactory.Instance.MakeBullet(EBulletType.Sub, LeftSubFirePosition.position);
+            BulletFactory.Instance.MakeBullet(EBulletType.Sub, RightSubFirePosition.position);
         }
     }
 

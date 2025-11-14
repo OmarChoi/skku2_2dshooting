@@ -4,6 +4,12 @@ public class DestroyZone : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(other.gameObject);
+        IPoolable poolable = other.GetComponent<IPoolable>();
+        if (poolable == null)
+        {
+            Destroy(other.gameObject);
+            return;
+        }
+        poolable.Release();
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPoolable
 {
     [Header("이동속도")]
     public float StartSpeed = 1.0f;
@@ -12,9 +12,13 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float _damage = 40.0f;
 
+    [SerializeField]
+    private int _poolKey;
+    public int PoolKey => _poolKey;
+
     private void Start()
     {
-        _speed = StartSpeed;
+        Init();
     }
 
     protected void Update()
@@ -53,6 +57,18 @@ public class Bullet : MonoBehaviour
         if (enemy == null) return;
 
         enemy.TakeDamage(_damage);
-        Destroy(this.gameObject);
+        Release();
     }
+
+    public void Init()
+    {
+        _speed = StartSpeed;
+    }
+
+    public void Release()
+    {
+        BulletFactory.Instance.ReleaseBullet(this.gameObject);
+    }
+
+    public void SetPoolKey(int key) => _poolKey = key;
 }
