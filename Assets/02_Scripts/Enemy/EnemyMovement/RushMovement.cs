@@ -4,10 +4,11 @@ public class RushMovement : EnemyMovement
 {
     private float _createTime;
     private float _waitTime = 3.0f;
-    private float _defaultSpeed = 12.0f;
+    private float _rushSpeed = 12.0f;
+
     private void Start()
     {
-        _speed = _defaultSpeed;
+        _speed = _rushSpeed;
         _createTime = Time.time;
     }
 
@@ -39,5 +40,12 @@ public class RushMovement : EnemyMovement
         if (currentTime - _createTime > _waitTime) return true;
         SetDirection();
         return false;
+    }
+
+    public override void Init()
+    {
+        _speed = _rushSpeed;
+        _createTime = Time.time;
+        _direction = Vector3.down;
     }
 }

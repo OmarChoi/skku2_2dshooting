@@ -67,5 +67,6 @@ public class EnemySpawner : MonoBehaviour
             spawnPosition.y = UnityEngine.Random.Range(spawnPosition.y + _minYDistance, _maxSpawnY);
             enemy.transform.position = spawnPosition;
         }
+        enemy.GetComponent<EnemyMovement>().Init();
     }
 }
