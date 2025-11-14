@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 public enum EEnemyType
 {
     Directional,
@@ -41,13 +41,13 @@ public class EnemyFactory : MonoBehaviour
 
     public GameObject SpawnEnemy(EEnemyType type, Vector3 position)
     {
-        GameObject bullet = _enemyPools[type].GetObject();
-        bullet.SetActive(true);
-        IPoolable poolable = bullet.GetComponent<IPoolable>();
+        GameObject enemy = _enemyPools[type].GetObject();
+        enemy.SetActive(true);
+        IPoolable poolable = enemy.GetComponent<IPoolable>();
         poolable.SetPoolKey((int)type);
         poolable.Init();
-        bullet.transform.position = position;
-        return bullet;
+        enemy.transform.position = position;
+        return enemy;
     }
 
     public void ReleaseEnemy(GameObject enemy)
