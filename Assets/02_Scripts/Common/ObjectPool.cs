@@ -9,7 +9,7 @@ public class ObjectPool
     private Transform _parent = null;
 
     private int _poolCount;
-    private float _increasePoolRate = 1.5f;
+    private const float IncreasePoolRate = 1.5f;
 
     private void CreateObject(int newObjectCount)
     {
@@ -35,9 +35,9 @@ public class ObjectPool
     {
         if (_pool.Count == 0)
         {
-            int increaseCount = (int)(_poolCount * _increasePoolRate);
-            CreateObject(increaseCount - _poolCount);
-            _poolCount += increaseCount;
+            int newPoolCount = (int)(_poolCount * IncreasePoolRate);
+            CreateObject(newPoolCount - _poolCount);
+            _poolCount = newPoolCount;
         }
         GameObject pooledObject = _pool.Dequeue();
         return pooledObject;
