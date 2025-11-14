@@ -13,8 +13,8 @@ public class Bullet : MonoBehaviour, IPoolable
     private float _damage = 40.0f;
 
     [SerializeField]
-    private EPoolType _poolType;
-    public EPoolType PoolType => _poolType;
+    private int _poolKey;
+    public int PoolKey => _poolKey;
 
     private void Start()
     {
@@ -69,4 +69,6 @@ public class Bullet : MonoBehaviour, IPoolable
     {
         BulletFactory.Instance.ReleaseBullet(this.gameObject);
     }
+
+    public void SetPoolKey(int key) => _poolKey = key;
 }

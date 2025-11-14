@@ -14,11 +14,7 @@ public class RushMovement : EnemyMovement
     private void SetDirection()
     {
         GameObject target = GameObject.FindWithTag("Player");
-        if (target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (target == null) return;
 
         Vector3 myPosition = transform.position;
         Vector3 targetPosition = target.transform.position;

@@ -1,6 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+public enum EBulletType
+{
+    Main,
+    Sub
+}
+
 public class BulletFactory : MonoBehaviour
 {
     private static BulletFactory _instance = null;
@@ -13,7 +19,7 @@ public class BulletFactory : MonoBehaviour
     public GameObject BulletPrefab;
     public GameObject SubBulletPrefab;
 
-    private Dictionary<EPoolType, ObjectPool> _bulletPools = new Dictionary<EPoolType, ObjectPool>();
+    private Dictionary<EBulletType, ObjectPool> _bulletPools = new Dictionary<EBulletType, ObjectPool>();
 
     private void Awake()
     {
@@ -29,35 +35,29 @@ public class BulletFactory : MonoBehaviour
     private void CreatePool()
     {
         ObjectPool mainBulletPool = new ObjectPool();
-        ObjectPool subBulletPool = new ObjectPool();
         mainBulletPool.InitPool(BulletPrefab, _bulletCount, this.transform);
+        _bulletPools.Add(EBulletType.Main, mainBulletPool);
+
+        ObjectPool subBulletPool = new ObjectPool();
         subBulletPool.InitPool(SubBulletPrefab, _subBulletCount, this.transform);
-        _bulletPools.Add(EPoolType.Bullet, mainBulletPool);
-        _bulletPools.Add(EPoolType.SubBullet, subBulletPool);
+        _bulletPools.Add(EBulletType.Sub, subBulletPool);
     }
 
-    public GameObject MakeBullet(Vector3 position)
+    public GameObject MakeBullet(EBulletType type, Vector3 position)
     {
-        GameObject bullet = _bulletPools[EPoolType.Bullet].GetObject();
+        GameObject bullet = _bulletPools[type].GetObject();
         bullet.SetActive(true);
-        bullet.GetComponent<IPoolable>().Init();
+        IPoolable poolable = bullet.GetComponent<IPoolable>();
+        poolable.SetPoolKey((int)type);
+        poolable.Init();
         bullet.transform.position = position;
         return bullet;
-    }
-
-    public GameObject MakeSubBullet(Vector3 position)
-    {
-        GameObject subBullet = _bulletPools[EPoolType.SubBullet].GetObject();
-        subBullet.SetActive(true);
-        subBullet.GetComponent<IPoolable>().Init();
-        subBullet.transform.position = position;
-        return subBullet;
     }
 
     public void ReleaseBullet(GameObject bullet)
     {
         bullet.SetActive(false);
-        EPoolType type = bullet.GetComponent<Bullet>().PoolType;
+        EBulletType type = (EBulletType)bullet.GetComponent<IPoolable>().PoolKey;
         _bulletPools[type].ReleaseObject(bullet);
     }
 }

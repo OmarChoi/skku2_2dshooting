@@ -1,11 +1,5 @@
 using UnityEngine;
 
-public enum EMovementType
-{
-    DirectionalMovement,
-    ChasingMovement,
-    RushMovement,
-}
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -63,19 +57,11 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         ResetCoolTime();
-        EMovementType type = (EMovementType)Utils.GetRandomIndexByWeight(_totalWeight, _probabilityWeights);
-        if (type == EMovementType.DirectionalMovement)
-        {
-            Instantiate(_enemyPrefab[(int)EMovementType.DirectionalMovement], transform.position, transform.rotation);
-        }
-        else if (type == EMovementType.ChasingMovement)
-        {
-            Instantiate(_enemyPrefab[(int)EMovementType.ChasingMovement], transform.position, transform.rotation);
-        }
-        else if (type == EMovementType.RushMovement)
+        EEnemyType type = (EEnemyType)Utils.GetRandomIndexByWeight(_totalWeight, _probabilityWeights);
+        GameObject enemy = EnemyFactory.Instance.SpawnEnemy(type, this.transform.position);
+        if (type == EEnemyType.Rush)
         {
             if (_player == null) return;
-            GameObject enemy = Instantiate(_enemyPrefab[(int)EMovementType.RushMovement]);
             Vector2 spawnPosition = _player.transform.position;
             spawnPosition.x = UnityEngine.Random.Range(_minSpawnX, _maxSpawnX);
             spawnPosition.y = UnityEngine.Random.Range(spawnPosition.y + _minYDistance, _maxSpawnY);
