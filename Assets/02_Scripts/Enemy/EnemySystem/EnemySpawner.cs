@@ -48,7 +48,8 @@ public class EnemySpawner : MonoBehaviour
         if (_bossSpawned == true) return;
         if (ScoreManager.Instance.CurrentScore >= _bossSpawnScore)
         {
-            EnemyFactory.Instance.SpawnBoss();
+            GameObject boss = EnemyFactory.Instance.SpawnBoss();
+            boss.GetComponent<BossMovement>().Init();
             _bossSpawned = true;
         }
     }

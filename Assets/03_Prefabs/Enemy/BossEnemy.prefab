@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 1868901807918575773}
   - component: {fileID: 6371587034688543567}
   - component: {fileID: 500223615131265121}
+  - component: {fileID: 5933103656225526771}
   m_Layer: 7
   m_Name: BossEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,3 +212,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.75, y: 2.75}
   m_EdgeRadius: 0
+--- !u!114 &5933103656225526771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4513464029308427926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb60fc6c84d225b4b81cd7005a1638f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExplosionPrefab: {fileID: 4012656697191513241, guid: ffe7023be59eef64a8f0f21ea6a54d56, type: 3}

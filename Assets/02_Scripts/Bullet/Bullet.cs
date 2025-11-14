@@ -53,9 +53,16 @@ public class Bullet : MonoBehaviour, IPoolable
     {
         if (other.CompareTag("Enemy") == false) return;
 
+        BossHealth boss = other.GetComponent<BossHealth>();
+        if (boss != null)
+        {
+            boss.TakeDamage(_damage);
+            return;
+        }
+
+
         EnemyHealth enemy = other.GetComponent<EnemyHealth>();
         if (enemy == null) return;
-
         enemy.TakeDamage(_damage);
         Release();
     }

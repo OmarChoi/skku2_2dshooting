@@ -76,8 +76,14 @@ public class EnemyFactory : MonoBehaviour
         _enemyPools[type].ReleaseObject(enemy);
     }
 
-    internal void SpawnBoss()
+    public GameObject SpawnBoss()
     {
         _bossObject.SetActive(true);
+        return _bossObject;
+    }
+
+    public void ReleaseBoss()
+    {
+        _bossObject.SetActive(false);
     }
 }
