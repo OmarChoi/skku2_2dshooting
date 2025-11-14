@@ -4,11 +4,12 @@ public class DestroyZone : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet"))
+        IPoolable poolable = other.GetComponent<IPoolable>();
+        if (poolable == null)
         {
-            BulletFactory.Instance.ReleaseBullet(other.gameObject);
+            Destroy(other.gameObject);
             return;
         }
-        Destroy(other.gameObject);
+        poolable.Release();
     }
 }

@@ -1,12 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-public enum EPoolType
-{
-    Bullet,
-    SubBullet,
-    Enemy,
-    Effect
-}
 
 public class ObjectPool
 {
@@ -43,7 +36,7 @@ public class ObjectPool
         if (_pool.Count == 0)
         {
             int increaseCount = (int)(_poolCount * _increasePoolRate);
-            CreateObject(increaseCount);
+            CreateObject(increaseCount - _poolCount);
             _poolCount += increaseCount;
         }
         GameObject pooledObject = _pool.Dequeue();

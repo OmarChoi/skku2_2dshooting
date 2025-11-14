@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BulletFactory : MonoBehaviour
 {
@@ -12,8 +13,7 @@ public class BulletFactory : MonoBehaviour
     public GameObject BulletPrefab;
     public GameObject SubBulletPrefab;
 
-    private ObjectPool _mainBulletPool;
-    private ObjectPool _subBulletPool;
+    private Dictionary<EPoolType, ObjectPool> _bulletPools = new Dictionary<EPoolType, ObjectPool>();
 
     private void Awake()
     {
@@ -28,24 +28,28 @@ public class BulletFactory : MonoBehaviour
 
     private void CreatePool()
     {
-        _mainBulletPool = new ObjectPool();
-        _subBulletPool = new ObjectPool();
-        _mainBulletPool.InitPool(BulletPrefab, _bulletCount, this.transform);
-        _subBulletPool.InitPool(SubBulletPrefab, _subBulletCount, this.transform);
+        ObjectPool mainBulletPool = new ObjectPool();
+        ObjectPool subBulletPool = new ObjectPool();
+        mainBulletPool.InitPool(BulletPrefab, _bulletCount, this.transform);
+        subBulletPool.InitPool(SubBulletPrefab, _subBulletCount, this.transform);
+        _bulletPools.Add(EPoolType.Bullet, mainBulletPool);
+        _bulletPools.Add(EPoolType.SubBullet, subBulletPool);
     }
 
     public GameObject MakeBullet(Vector3 position)
     {
-        GameObject bullet = _mainBulletPool.GetObject();
+        GameObject bullet = _bulletPools[EPoolType.Bullet].GetObject();
         bullet.SetActive(true);
+        bullet.GetComponent<IPoolable>().Init();
         bullet.transform.position = position;
         return bullet;
     }
 
     public GameObject MakeSubBullet(Vector3 position)
     {
-        GameObject subBullet = _subBulletPool.GetObject();
+        GameObject subBullet = _bulletPools[EPoolType.SubBullet].GetObject();
         subBullet.SetActive(true);
+        subBullet.GetComponent<IPoolable>().Init();
         subBullet.transform.position = position;
         return subBullet;
     }
@@ -54,13 +58,6 @@ public class BulletFactory : MonoBehaviour
     {
         bullet.SetActive(false);
         EPoolType type = bullet.GetComponent<Bullet>().PoolType;
-        if (type == EPoolType.Bullet)
-        {
-            _mainBulletPool.ReleaseObject(bullet);
-        }
-        else
-        {
-            _subBulletPool.ReleaseObject(bullet);
-        }
+        _bulletPools[type].ReleaseObject(bullet);
     }
 }
