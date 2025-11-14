@@ -20,6 +20,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private Text _currentScoreTextUI;
     [SerializeField] private Text _highScoreTextUI;
     private int _currentScore = 0;
+    public int CurrentScore => _currentScore;
     private int _highScore = 0;
 
     private ScoreData _scoreData = null;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +26,9 @@ public class EnemyFactory : MonoBehaviour
     private Dictionary<EEnemyType, ObjectPool> _enemyPools = new Dictionary<EEnemyType, ObjectPool>();
 
 
+    [SerializeField] private GameObject _bossPrefab;
+    private GameObject _bossObject;
+
     private void Awake()
     {
         if (_instance != null)
@@ -34,6 +38,13 @@ public class EnemyFactory : MonoBehaviour
         }
         _instance = this;
         CreatePool();
+        CreateBoss();
+    }
+
+    private void CreateBoss()
+    {
+        _bossObject = Instantiate(_bossPrefab, this.transform);
+        _bossObject.SetActive(false);
     }
 
     private void CreatePool()
@@ -63,5 +74,10 @@ public class EnemyFactory : MonoBehaviour
         enemy.SetActive(false);
         EEnemyType type = (EEnemyType)enemy.GetComponent<IPoolable>().PoolKey;
         _enemyPools[type].ReleaseObject(enemy);
+    }
+
+    internal void SpawnBoss()
+    {
+        _bossObject.SetActive(true);
     }
 }
