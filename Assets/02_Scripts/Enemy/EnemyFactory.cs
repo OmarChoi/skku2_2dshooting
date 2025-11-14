@@ -8,13 +8,20 @@ public enum EEnemyType
     Rush,
 }
 
+[System.Serializable]
+public struct EnemyPrefabPair
+{
+    public EEnemyType Type;
+    public GameObject Prefab;
+}
+
 public class EnemyFactory : MonoBehaviour
 {
     private static EnemyFactory _instance = null;
     public static EnemyFactory Instance => _instance;
 
     private int _initPoolSize = 10;
-    [SerializeField] private GameObject[] _enemyPrefabs;
+    [SerializeField] private EnemyPrefabPair[] _enemyPrefabairs;
     private Dictionary<EEnemyType, ObjectPool> _enemyPools = new Dictionary<EEnemyType, ObjectPool>();
 
 
@@ -31,11 +38,12 @@ public class EnemyFactory : MonoBehaviour
 
     private void CreatePool()
     {
-        foreach (EEnemyType type in System.Enum.GetValues(typeof(EEnemyType)))
+        foreach (EnemyPrefabPair pair in _enemyPrefabairs)
         {
-            ObjectPool enemyPool = new ObjectPool();
-            enemyPool.InitPool(_enemyPrefabs[(int)type], _initPoolSize, this.transform);
-            _enemyPools.Add(type, enemyPool);
+            if (_enemyPools.ContainsKey(pair.Type)) continue;
+            ObjectPool pool = new ObjectPool();
+            pool.InitPool(pair.Prefab, _initPoolSize, this.transform);
+            _enemyPools.Add(pair.Type, pool);
         }
     }
 

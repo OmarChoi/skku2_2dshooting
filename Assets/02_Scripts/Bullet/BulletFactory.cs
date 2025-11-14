@@ -7,17 +7,19 @@ public enum EBulletType
     Sub
 }
 
+[System.Serializable]
+public struct BulletPoolInfo
+{
+    public EBulletType Type;
+    public GameObject Prefab;
+    public int InitialSize;
+}
+
 public class BulletFactory : MonoBehaviour
 {
     private static BulletFactory _instance = null;
     public static BulletFactory Instance => _instance;
-
-    [Header("총알 프리팹")]
-    private int _bulletCount = 30;
-    private int _subBulletCount = 30;
-
-    public GameObject BulletPrefab;
-    public GameObject SubBulletPrefab;
+    [SerializeField] private BulletPoolInfo[] _bulletPoolInfos;
 
     private Dictionary<EBulletType, ObjectPool> _bulletPools = new Dictionary<EBulletType, ObjectPool>();
 
@@ -34,13 +36,13 @@ public class BulletFactory : MonoBehaviour
 
     private void CreatePool()
     {
-        ObjectPool mainBulletPool = new ObjectPool();
-        mainBulletPool.InitPool(BulletPrefab, _bulletCount, this.transform);
-        _bulletPools.Add(EBulletType.Main, mainBulletPool);
-
-        ObjectPool subBulletPool = new ObjectPool();
-        subBulletPool.InitPool(SubBulletPrefab, _subBulletCount, this.transform);
-        _bulletPools.Add(EBulletType.Sub, subBulletPool);
+        foreach (BulletPoolInfo info in _bulletPoolInfos)
+        {
+            if (_bulletPools.ContainsKey(info.Type)) continue;
+            ObjectPool pool = new ObjectPool();
+            pool.InitPool(info.Prefab, info.InitialSize, this.transform);
+            _bulletPools.Add(info.Type, pool);
+        }
     }
 
     public GameObject MakeBullet(EBulletType type, Vector3 position)

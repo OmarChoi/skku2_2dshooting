@@ -182,8 +182,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98d97f604519a64d8a27f1fbcdf44bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 2178108023562888387, guid: b6822495dde3b4743925cfbf8d3c8f6a, type: 3}
-  SubBulletPrefab: {fileID: 1562646851228537816, guid: c82678cdce0b355409921380e0574bbd, type: 3}
+  _bulletPoolInfos:
+  - Type: 0
+    Prefab: {fileID: 2178108023562888387, guid: b6822495dde3b4743925cfbf8d3c8f6a, type: 3}
+    InitialSize: 30
+  - Type: 1
+    Prefab: {fileID: 1562646851228537816, guid: c82678cdce0b355409921380e0574bbd, type: 3}
+    InitialSize: 30
 --- !u!4 &113848992
 Transform:
   m_ObjectHideFlags: 0
@@ -1395,10 +1400,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddb1d43a5c4e3844af37141f6430660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefabs:
-  - {fileID: 7299468638613245390, guid: 69c72ebd66eadc646805b232f83cd0f0, type: 3}
-  - {fileID: 7565436770753488498, guid: 87209b38ed5036c42ac386bbd748a537, type: 3}
-  - {fileID: 3797397295862767673, guid: 36a685f30068de14993f86de15dce902, type: 3}
+  _enemyPrefabairs:
+  - Type: 0
+    Prefab: {fileID: 7299468638613245390, guid: 69c72ebd66eadc646805b232f83cd0f0, type: 3}
+  - Type: 1
+    Prefab: {fileID: 7565436770753488498, guid: 87209b38ed5036c42ac386bbd748a537, type: 3}
+  - Type: 2
+    Prefab: {fileID: 3797397295862767673, guid: 36a685f30068de14993f86de15dce902, type: 3}
 --- !u!1001 &1275480776
 PrefabInstance:
   m_ObjectHideFlags: 0
