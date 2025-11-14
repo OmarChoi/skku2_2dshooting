@@ -12,6 +12,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float _damage = 40.0f;
 
+    [SerializeField]
+    private EPoolType _poolType;
+    public EPoolType PoolType => _poolType;
     private void Start()
     {
         _speed = StartSpeed;
@@ -53,6 +56,6 @@ public class Bullet : MonoBehaviour
         if (enemy == null) return;
 
         enemy.TakeDamage(_damage);
-        Destroy(this.gameObject);
+        BulletFactory.Instance.ReleaseBullet(this.gameObject);
     }
 }
