@@ -4,7 +4,7 @@ public class EnemyHealth : MonoBehaviour, IPoolable
 {
     [Header("능력치")]
     private float _health = 100.0f;
-    private static float _maxHealth = 100.0f;
+    private float _maxHealth = 100.0f;
 
     private Animator _animator = null;
 
