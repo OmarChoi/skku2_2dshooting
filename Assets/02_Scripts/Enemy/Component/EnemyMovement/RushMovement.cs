@@ -4,21 +4,18 @@ public class RushMovement : EnemyMovement
 {
     private float _createTime;
     private float _waitTime = 3.0f;
-    private float _defaultSpeed = 12.0f;
+    private float _rushSpeed = 12.0f;
+
     private void Start()
     {
-        _speed = _defaultSpeed;
+        _speed = _rushSpeed;
         _createTime = Time.time;
     }
 
     private void SetDirection()
     {
         GameObject target = GameObject.FindWithTag("Player");
-        if (target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (target == null) return;
 
         Vector3 myPosition = transform.position;
         Vector3 targetPosition = target.transform.position;
@@ -43,5 +40,12 @@ public class RushMovement : EnemyMovement
         if (currentTime - _createTime > _waitTime) return true;
         SetDirection();
         return false;
+    }
+
+    public override void Init()
+    {
+        _speed = _rushSpeed;
+        _createTime = Time.time;
+        _direction = Vector3.down;
     }
 }

@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
-    [Header("총알 프리팹")]
-    public GameObject BulletPrefab;
-    public GameObject SubBulletPrefab;
-
     [Header("총구")]
     public Transform LeftFirePosition;
     public Transform RightFirePosition;
@@ -58,8 +54,8 @@ public class PlayerFire : MonoBehaviour
             FireSound.Play();
 
             _mainFireTimer = 0.0f;
-            Instantiate(BulletPrefab, LeftFirePosition.position, LeftFirePosition.rotation);
-            Instantiate(BulletPrefab, RightFirePosition.position, RightFirePosition.rotation);
+            BulletFactory.Instance.MakeBullet(EBulletType.Main, LeftFirePosition.position);
+            BulletFactory.Instance.MakeBullet(EBulletType.Main, RightFirePosition.position);
         }
     }
 
@@ -71,8 +67,8 @@ public class PlayerFire : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) || _isAutoFire)
         {
             _subFireTimer = 0.0f;
-            Instantiate(SubBulletPrefab, LeftSubFirePosition.position, LeftSubFirePosition.rotation);
-            Instantiate(SubBulletPrefab, RightSubFirePosition.position, RightSubFirePosition.rotation);
+            BulletFactory.Instance.MakeBullet(EBulletType.Sub, LeftSubFirePosition.position);
+            BulletFactory.Instance.MakeBullet(EBulletType.Sub, RightSubFirePosition.position);
         }
     }
 

@@ -27,4 +27,10 @@ public class ChasingMovement : EnemyMovement
         float finalAngle = (targetAngle - defaultAngle) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, finalAngle);
     }
+
+    public override void Init()
+    {
+        _target = null;
+        _direction = Vector3.down;
+    }
 }

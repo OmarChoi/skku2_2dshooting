@@ -8,7 +8,7 @@ public class EnemyAttack : MonoBehaviour
         PlayerHealth playerState = other.GetComponent<PlayerHealth>();
         if (playerState == null) return;
 
-        playerState.TakeDamage(); 
-        Destroy(gameObject);
+        playerState.TakeDamage();
+        GetComponent<IPoolable>().Release();
     }
 }
