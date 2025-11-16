@@ -6,19 +6,21 @@ public class RushMovement : EnemyMovement
     private float _waitTime = 3.0f;
     private float _rushSpeed = 12.0f;
 
+    private GameObject _target = null;
+
     private void Start()
     {
         _speed = _rushSpeed;
         _createTime = Time.time;
+        _target = GameObject.FindWithTag("Player");
     }
 
     private void SetDirection()
     {
-        GameObject target = GameObject.FindWithTag("Player");
-        if (target == null) return;
+        if (_target == null) return;
 
         Vector3 myPosition = transform.position;
-        Vector3 targetPosition = target.transform.position;
+        Vector3 targetPosition = _target.transform.position;
         _direction = targetPosition - myPosition;
         _direction.Normalize();
 
