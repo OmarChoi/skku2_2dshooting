@@ -1,7 +1,6 @@
+using UnityEngine;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
 
 public enum EPlayerState
 {
@@ -116,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void UpdateAutoState()
     {
-        if (_target == null)
+        if (_target == null || _target.activeSelf == false)
         {
             _playerState = EPlayerState.Idle;
         }
@@ -125,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveToTarget()
     {
-        if (_target == null) return;
+        if (_target == null || _target.activeSelf == false) return;
         Vector2 targetPosition = _target.transform.position;
         Vector2 myPosition = transform.position;
         Vector2 toTarget = targetPosition - myPosition;
@@ -183,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         TranslateToOrigin();
-        if (_target != null)
+        if (_target != null && _target.activeSelf == true)
         {
             _playerState = EPlayerState.Move;
         }

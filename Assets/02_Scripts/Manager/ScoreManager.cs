@@ -4,10 +4,23 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    // 목표: 적을 죽일 때마다 점수를 올리고, 현재 점수를 UI에 표시하고 싶다.
+    private static ScoreManager _instance = null;
+    public static ScoreManager Instance => _instance;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        _instance = this;
+    }
+
     [SerializeField] private Text _currentScoreTextUI;
     [SerializeField] private Text _highScoreTextUI;
     private int _currentScore = 0;
+    public int CurrentScore => _currentScore;
     private int _highScore = 0;
 
     private ScoreData _scoreData = null;

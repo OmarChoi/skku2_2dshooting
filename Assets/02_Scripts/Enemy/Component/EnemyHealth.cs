@@ -1,14 +1,19 @@
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IPoolable, IDamageable
 {
     [Header("능력치")]
     private float _health = 100.0f;
+    private float _maxHealth = 100.0f;
 
     private Animator _animator = null;
 
     [Header("이펙트 프리팹")]
     public GameObject ExplosionPrefab;
+
+    private int _poolKey = 0;
+    public int PoolKey => _poolKey;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -33,15 +38,25 @@ public class EnemyHealth : MonoBehaviour
             spawner.SpawnItem(transform.position);
         }
 
-        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
-        // todo : 추후 매직넘버 수정 예정 입니다.
-        scoreManager.AddScore(100);
+        ScoreManager.Instance.AddScore(100);
         MakeExplosionEffect();
-        Destroy(gameObject);
+        Release();
     }
 
     private void MakeExplosionEffect()
     {
         Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
     }
+
+    public void Init()
+    {
+        _health = _maxHealth;
+    }
+
+    public void Release()
+    {
+        EnemyFactory.Instance.ReleaseEnemy(this.gameObject);
+    }
+
+    public void SetPoolKey(int key) => _poolKey = key;
 }

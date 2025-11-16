@@ -1,18 +1,8 @@
 using UnityEngine;
 
-public enum EMovementType
-{
-    DirectionalMovement,
-    ChasingMovement,
-    RushMovement,
-}
-
 public class EnemySpawner : MonoBehaviour
 {
-    GameObject _player = null;
-    [Header("적 프리팹")]
-    [SerializeField]
-    private GameObject[] _enemyPrefab;
+    private GameObject _player = null;
 
     [Header("스폰 시간")]
     [SerializeField]
@@ -28,10 +18,14 @@ public class EnemySpawner : MonoBehaviour
     private int[] _probabilityWeights = new int[] { 60, 30, 30 };
 
     [Header("스폰시 위치 오프셋")]
-    float _minSpawnX = -2.25f;
-    float _maxSpawnX = 2.25f;
-    float _minYDistance = 3.0f;
-    float _maxSpawnY = 5.0f;
+    private float _minSpawnX = -2.25f;
+    private float _maxSpawnX = 2.25f;
+    private float _minYDistance = 3.0f;
+    private float _maxSpawnY = 5.0f;
+
+    [Header("보스")]
+    private int _bossSpawnScore = 500;
+    private bool _bossSpawned = false;
 
     private void Start()
     {
@@ -46,6 +40,18 @@ public class EnemySpawner : MonoBehaviour
     {
         if (CanSpawn() == false) return;
         SpawnEnemy();
+        SpawnBoss();
+    }
+
+    private void SpawnBoss()
+    {
+        if (_bossSpawned == true) return;
+        if (ScoreManager.Instance.CurrentScore >= _bossSpawnScore)
+        {
+            GameObject boss = EnemyFactory.Instance.SpawnBoss();
+            boss.GetComponent<BossMovement>().Init();
+            _bossSpawned = true;
+        }
     }
 
     private bool CanSpawn()
@@ -63,23 +69,16 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         ResetCoolTime();
-        EMovementType type = (EMovementType)Utils.GetRandomIndexByWeight(_totalWeight, _probabilityWeights);
-        if (type == EMovementType.DirectionalMovement)
-        {
-            Instantiate(_enemyPrefab[(int)EMovementType.DirectionalMovement], transform.position, transform.rotation);
-        }
-        else if (type == EMovementType.ChasingMovement)
-        {
-            Instantiate(_enemyPrefab[(int)EMovementType.ChasingMovement], transform.position, transform.rotation);
-        }
-        else if (type == EMovementType.RushMovement)
+        EEnemyType type = (EEnemyType)Utils.GetRandomIndexByWeight(_totalWeight, _probabilityWeights);
+        GameObject enemy = EnemyFactory.Instance.SpawnEnemy(type, this.transform.position);
+        if (type == EEnemyType.Rush)
         {
             if (_player == null) return;
-            GameObject enemy = Instantiate(_enemyPrefab[(int)EMovementType.RushMovement]);
             Vector2 spawnPosition = _player.transform.position;
             spawnPosition.x = UnityEngine.Random.Range(_minSpawnX, _maxSpawnX);
             spawnPosition.y = UnityEngine.Random.Range(spawnPosition.y + _minYDistance, _maxSpawnY);
             enemy.transform.position = spawnPosition;
         }
+        enemy.GetComponent<EnemyMovement>().Init();
     }
 }
