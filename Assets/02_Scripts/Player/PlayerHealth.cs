@@ -1,25 +1,25 @@
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [Header("체력")]
-    private int _life = 3;
-    private int _maxLife = 3;
+    private float _health = 100;
+    private float _maxhealth = 100;
 
     [SerializeField] private GameObject _gameOverPrefab;
 
-    public void TakeDamage()
+    public void TakeDamage(float damage)
     {
-        --_life;
-        if (_life == 0)
+        _health -= damage;
+        if (_health <= 0)
         {
             Die();
         }
     }
 
-    public void Heal()
+    public void Heal(float healAmount)
     {
-        _life = Mathf.Min(_life + 1, _maxLife);
+        _health = Mathf.Min(_health + healAmount, _maxhealth);
     }
 
     private void Die()

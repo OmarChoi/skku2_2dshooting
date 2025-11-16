@@ -52,18 +52,9 @@ public class Bullet : MonoBehaviour, IPoolable
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy") == false) return;
-
-        BossHealth boss = other.GetComponent<BossHealth>();
-        if (boss != null)
-        {
-            boss.TakeDamage(_damage);
-            return;
-        }
-
-
-        EnemyHealth enemy = other.GetComponent<EnemyHealth>();
-        if (enemy == null) return;
-        enemy.TakeDamage(_damage);
+        IDamageable damagable = other.GetComponent<IDamageable>();
+        if (damagable == null) return;
+        damagable.TakeDamage(_damage);
         Release();
     }
 

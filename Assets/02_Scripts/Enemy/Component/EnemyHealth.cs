@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour, IPoolable
+public class EnemyHealth : MonoBehaviour, IPoolable, IDamageable
 {
     [Header("능력치")]
     private float _health = 100.0f;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossHealth : MonoBehaviour
+public class BossHealth : MonoBehaviour, IDamageable
 {
     private float _health = 5000.0f;
     private float _maxHealth = 5000.0f;
