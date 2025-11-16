@@ -4,7 +4,8 @@ using System.Collections.Generic;
 public enum EBulletType
 {
     Main,
-    Sub
+    Sub,
+    BossDirectional,
 }
 
 [System.Serializable]
@@ -48,11 +49,18 @@ public class BulletFactory : MonoBehaviour
     public GameObject MakeBullet(EBulletType type, Vector3 position)
     {
         GameObject bullet = _bulletPools[type].GetObject();
-        bullet.SetActive(true);
         IPoolable poolable = bullet.GetComponent<IPoolable>();
         poolable.SetPoolKey((int)type);
         poolable.Init();
         bullet.transform.position = position;
+        bullet.SetActive(true);
+        return bullet;
+    }
+    
+    public GameObject MakeBullet(EBulletType type, Vector3 position, Vector2 direction)
+    {
+        GameObject bullet = MakeBullet(type, position);
+        bullet.GetComponent<BulletBase>().SetDirection(direction);
         return bullet;
     }
 

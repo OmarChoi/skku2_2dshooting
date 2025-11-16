@@ -189,6 +189,9 @@ MonoBehaviour:
   - Type: 1
     Prefab: {fileID: 1562646851228537816, guid: c82678cdce0b355409921380e0574bbd, type: 3}
     InitialSize: 30
+  - Type: 2
+    Prefab: {fileID: 3357292330556002674, guid: c2f456662e97d8d499b4e447b6a01033, type: 3}
+    InitialSize: 30
 --- !u!4 &113848992
 Transform:
   m_ObjectHideFlags: 0
@@ -345,7 +348,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178388485}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
